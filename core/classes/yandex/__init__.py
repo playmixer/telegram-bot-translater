@@ -165,17 +165,16 @@ class Yandex:
         }
         log += "\n\tQuery: " + json.dumps(data)
         r = requests.post(url, headers={"Authorization": f"Bearer {self.iam}"}, data=data)
-        filename = os.path.join(TMP_FOLDER, f'file_{datetime.now().strftime("%Y%m%d%H%M%S%f")}.ogg')
         if r.status_code == 200:
-            save_to_tmp(r.content, prefix='file_', end='.ogg')
+            filename = save_to_tmp(r.content, prefix='file_', end='.ogg')
             log += "\n\tResponse completed"
+            self.file = filename
             # with open(filename, 'wb') as f:
             #     f.write(r.content)
         else:
             log += "\n\tError: " + r.text
 
         logger.debug(log)
-        self.file = filename
         return self
 
     def recognize(self, filename: str):
