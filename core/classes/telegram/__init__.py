@@ -82,7 +82,7 @@ class Telegram:
         r_json = requests.get(url).json()
         if r_json.get('result') and len(r_json.get('result')):
             log += f"\n\tResponse: {json.dumps(r_json)}"
-        logger.debug(log)
+            logger.debug(log)
         return TelegramResult(r_json)
 
     def send_message(self, chat_id: int, text: str = ""):
