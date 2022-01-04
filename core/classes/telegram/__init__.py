@@ -81,10 +81,11 @@ class Telegram:
         url = self._api + 'getUpdates'
         if offset:
             url += '?offset=' + str(offset)
+        log = f'Telegram.get_update {url}'
         r_json = request.get(url).json()
         if r_json.get('result') and len(r_json.get('result')):
-            logger.debug(f'''Telegram.get_update {url}
-\tResponse: {json.dumps(r_json)}''')
+            log += f"\n\tResponse: {json.dumps(r_json)}"
+        logger.debug(log)
         return TelegramResult(r_json)
 
     def send_message(self, chat_id: int, text: str = ""):
