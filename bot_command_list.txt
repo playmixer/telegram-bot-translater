@@ -1,0 +1,4 @@
+start - About
+lang_en - Translate to english
+lang_tr - Translate to turkish
+lang_ru - Translate to russia
