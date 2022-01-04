@@ -130,7 +130,7 @@ class VoiceApplication:
 
             # Сохраняем номер последнего сообщения
             last_message: list[TelegramMessage] = result.messages[-1:]
-            if len(last_message) and update_id < last_message[0].update_id:
+            if len(last_message):
                 update_id = last_message[0].update_id
                 with Data() as d:
                     d.set('update_id', last_message[0].update_id)
