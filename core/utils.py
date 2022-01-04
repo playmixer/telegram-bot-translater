@@ -13,8 +13,8 @@ def mk_path(path: list):
             os.mkdir(p)
 
 
-def command_split(text: str) -> Tuple[str, str]:
-    s = text.split(' ')
+def command_split(text: str, delimiter=' ') -> Tuple[str, str]:
+    s = text.split(delimiter)
     return s[0][1:], s[1] if len(s) > 1 else None
 
 
@@ -23,4 +23,5 @@ def save_to_tmp(file, prefix='file_', end='') -> str:
     with open(filename, 'wb') as f:
         f.write(file)
         logger.debug(f'save_to_tmp file: {filename}')
+    if os.path.exists(filename):
         return filename
