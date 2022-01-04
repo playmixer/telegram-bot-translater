@@ -1,8 +1,8 @@
-from core import Voicer, Data
+from core import VoiceApplication, Data
 
 with Data() as d:
     data = d.data
 
-app = Voicer(config_dict=data)
+app = VoiceApplication(config_dict=data)
 
-app.run()
+app.start()
