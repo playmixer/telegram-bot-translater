@@ -1,7 +1,4 @@
 from typing import List
-from core.request import request
-import urllib
-import urllib.parse
 import requests
 from core.logger import logger
 from core.configurations import TG_BOT_TOKEN
@@ -66,7 +63,7 @@ class Telegram:
     def get_me(self):
         url = self._api + 'getMe'
 
-        res = request.get(url)
+        res = requests.get(url)
         json = res.json()
         if json.get('ok'):
             result = json.get('result')
@@ -82,7 +79,7 @@ class Telegram:
         if offset:
             url += '?offset=' + str(offset)
         log = f'Telegram.get_update {url}'
-        r_json = request.get(url).json()
+        r_json = requests.get(url).json()
         if r_json.get('result') and len(r_json.get('result')):
             log += f"\n\tResponse: {json.dumps(r_json)}"
         logger.debug(log)
