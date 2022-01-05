@@ -63,8 +63,8 @@ class Yandex:
         self.token = YANDEX_TOKEN
         self.folderId = YANDEX_FOLDER
         self.update_configurations()
-
-        if self.iam is None or self.expire_iam is None or datetime.utcnow() - timedelta(hours=2) > self.expire_iam:
+        is_expire_iam = (self.expire_iam - datetime.utcnow()) < timedelta(hours=4)
+        if self.iam is None or self.expire_iam is None or is_expire_iam:
             yandex = self.get_iam_token()
             if yandex is not None:
                 self.iam = yandex.get('iamToken')
